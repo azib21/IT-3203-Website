@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>FIFA World Cup | Quiz</title>
+    <link rel="stylesheet" href="style.css">
+    </head>
+    <body class="quiz-body">
+      <!--Navigation Menu-->
+  <nav class="navbar">
+    <ul>
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="history.html">History</a></li>
+      <li><a href="players.html">Players & Teams</a></li>
+      <li><a href="concepts.html">Key Concepts</a></li>
+      <li><a href="quiz.html">Quiz</a></li>
+      <li><a href="references.html">References</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>  
+  <!--Sub-hero banner-->
+  <header class="sub-hero">
+    <h1>World Cup Knowledge Quiz</h1>
+    <p>Test what you have learned from this website</p>
+  </header>
+
+  <main>
+    <section class="quiz-container">
+      <h2>World Cup Quiz</h2>
+      <p>
+        Answer the questions below to check your understanding of the FIFA World Cup's history,
+        teams, and key concepts. When you submit, your score and feedback will appear
+        on this page.
+      </p>
+
+      <!--Quiz form-->
+      <form id="quizForm" onsubmit="gradeQuiz(event)">
+        <!--Q1: Fill the blank-->
+        <div class="quiz-question">
+          <h3>1. The first FIFA World Cup was held in ________ in 1930.</h3>
+          <input type="text" id="q1" name="q1" placeholder="Type the country name here">
+        </div>
+
+        <!--Q2: Multiple choice-->
+        <div class="quiz-question">
+          <h3>2. From 1998 to 2022, how many teams competed in the World Cup final tournament?</h3>
+          <div class="quiz-options">
+            <label><input type="radio" name="q2" value="24"> 24 teams</label>
+            <label><input type="radio" name="q2" value="28"> 28 teams</label>
+            <label><input type="radio" name="q2" value="32"> 32 teams</label>
+            <label><input type="radio" name="q2" value="48"> 48 teams</label>
+          </div>
+        </div>
+
+        <!--Q3: Multiple choice-->
+        <div class="quiz-question">
+          <h3>3. How often is the FIFA World Cup usually held?</h3>
+          <div class="quiz-options">
+            <label><input type="radio" name="q3" value="2"> Every 2 years</label>
+            <label><input type="radio" name="q3" value="3"> Every 3 years</label>
+            <label><input type="radio" name="q3" value="4"> Every 4 years</label>
+            <label><input type="radio" name="q3" value="5"> Every 5 years</label>
+          </div>
+        </div>
+
+        <!--Q4: Multiple choice-->
+        <div class="quiz-question">
+          <h3>4. Which player has won the most FIFA World Cup titles?</h3>
+          <div class="quiz-options">
+            <label><input type="radio" name="q4" value="messi"> Lionel Messi</label>
+            <label><input type="radio" name="q4" value="maradona"> Diego Maradona</label>
+            <label><input type="radio" name="q4" value="pele"> Pelé</label>
+            <label><input type="radio" name="q4" value="ronaldo"> Cristiano Ronaldo</label>
+          </div>
+        </div>
+
+        <!--Q5: Multi-selection-->
+        <div class="quiz-question">
+          <h3>5. Select <strong>all</strong> of the countries that have won the FIFA World Cup:</h3>
+          <div class="quiz-options">
+            <label><input type="checkbox" name="q5" value="brazil"> Brazil</label>
+            <label><input type="checkbox" name="q5" value="germany"> Germany</label>
+            <label><input type="checkbox" name="q5" value="argentina"> Argentina</label>
+            <label><input type="checkbox" name="q5" value="netherlands"> Netherlands</label>
+            <label><input type="checkbox" name="q5" value="portugal"> Portugal</label>
+          </div>
+        </div>
+
+        <!--Buttons-->
+        <div class="quiz-buttons">
+            <button type="button" class="btn primary" onclick="gradeQuiz()">Submit Quiz</button>
+            <button type="button" class="btn secondary" onclick="resetQuiz()">Reset Quiz</button>
+          </div>
+      </form>
+
+      <!--Results-->
+      <div id="result" class="overall-result"></div>
+    </section>
+  </main>
+
+  <!--javascript for quiz-->
+  <script>
+    function gradeQuiz() {
+        var score = 0;
+        var total = 5;
+        var resultText = "";
+
+        //Q1: text input
+        var q1 = document.getElementById("q1").value.trim().toLowerCase();
+        if (q1 === "uruguay") {
+          score++;
+          resultText += "Q1: Correct<br>";
+        } else {
+          resultText += "Q1: Incorrect (Answer: Uruguay)<br>";
+        }
+
+        //Q2: radio
+        var q2 = document.querySelector('input[name="q2"]:checked');
+        if (q2 && q2.value === "32") {
+          score++;
+          resultText += "Q2: Correct<br>";
+        } else {
+          resultText += "Q2: Incorrect (Answer: 32 teams)<br>";
+        }
+
+        //Q3: radio
+        var q3 = document.querySelector('input[name="q3"]:checked');
+        if (q3 && q3.value === "4") {
+          score++;
+          resultText += "Q3: Correct<br>";
+        } else {
+          resultText += "Q3: Incorrect (Answer: Every 4 years)<br>";
+        }
+
+        //Q4: radio
+        var q4 = document.querySelector('input[name="q4"]:checked');
+        if (q4 && q4.value === "pele") {
+          score++;
+          resultText += "Q4: Correct<br>";
+        } else {
+          resultText += "Q4: Incorrect (Answer: Pelé)<br>";
+        }
+
+        //Q5: checkboxes
+        var q5Checked = document.querySelectorAll('input[name="q5"]:checked');
+        var values = [];
+        for (var i = 0; i < q5Checked.length; i++) {
+          values.push(q5Checked[i].value);
+        }
+
+        var hasBrazil = values.indexOf("brazil") !== -1;
+        var hasGermany = values.indexOf("germany") !== -1;
+        var hasArgentina = values.indexOf("argentina") !== -1;
+        var hasNetherlands = values.indexOf("netherlands") !== -1;
+        var hasPortugal = values.indexOf("portugal") !== -1;
+
+        if (hasBrazil && hasGermany && hasArgentina && !hasNetherlands && !hasPortugal) {
+          score++;
+          resultText += "Q5: Correct<br>";
+        } else {
+          resultText += "Q5: Incorrect (Answer: Brazil, Germany, Argentina)<br>";
+        }
+
+        //Total score & if pass or fail
+        resultText += "<br><strong>Total Score: " + score + "/" + total + "</strong><br>";
+
+        if (score >= 4) {
+          resultText += "<span style='color:green; font-weight:bold'>You Passed!</span>";
+        } else {
+          resultText += "<span style='color:red; font-weight:bold'>You Did Not Pass. Try Again.</span>";
+        }
+
+        //Show results
+        document.getElementById("result").innerHTML = resultText;
+      }
+
+      function resetQuiz() {
+        document.getElementById("quizForm").reset();
+        document.getElementById("result").innerHTML = "";
+      }
+  </script>
+
+  <footer>
+    <p>IT 3203 Website Project https://ksuweb.github.io/IT3203/</p>
+  </footer>
+</body>
+</html>
