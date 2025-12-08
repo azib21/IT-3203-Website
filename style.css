@@ -135,12 +135,22 @@ body {
 }
 
 /*concepts page*/
-.inline-img {
-  width: 200px;
-  float: right;
-  margin: 10px;
-  border-radius: 8px;
-  border: 2px solid #c8e6c9;
+
+.concepts-img {
+  display: block;
+  width: 80%;
+  max-width: 450px;
+  margin: 20px auto 30px auto;     /*centers image with spacing*/
+  border-radius: 10px;
+  border: 3px solid #a5d6a7;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.concept-section-alt {
+  background-color: #f1f8e9;       
+  border: 1px solid #a5d6a7;
+  border-radius: 12px;
+  padding: 40px 30px;
 }
 
 /*players gallery grid*/
@@ -215,6 +225,20 @@ tr:nth-child(even) {
 
 /*references links hover effect*/
 
+main a{
+   color: #1b5e20;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+main a:hover{
+  color: white;
+  background-color: #1b5e20;
+  padding: 6px 10px;
+  border-radius: 6px;
+  text-decoration: underline;
+}
+
 main ul li a {
   color: #1b5e20;
   font-weight: bold;
@@ -239,6 +263,23 @@ footer {
 }
 
 /* Quiz*/
+
+.sub-hero {
+  background-color: #2e7d32;
+  color: white;
+  text-align: center;
+  padding: 30px 15px;
+  border-bottom: 4px solid #1b5e20;
+}
+
+.sub-hero h1 {
+  margin: 0;
+}
+
+.sub-hero p {
+  margin-top: 8px;
+  font-size: 1rem;
+}
 
 .quiz-container {
   max-width: 900px;
@@ -330,4 +371,96 @@ footer {
 .btn.secondary:hover {
   background-color: #a5d6a7;
   transform: translateY(-1px);
+}
+
+/*Responsive Design*/
+
+/*tablets/small laptops*/
+@media (max-width: 900px) {
+  .hero {
+    height: auto;
+    padding: 60px 20px;
+  }
+
+  .hero-content {
+    padding: 15px 20px;
+  }
+
+  .intro {
+    font-size: 1.3em;
+    padding: 20px;
+  }
+
+  .navbar ul {
+    flex-wrap: wrap;
+  }
+
+  .page-img {
+    max-width: 60%;
+  }
+}
+
+/*phones*/
+@media (max-width: 600px) {
+  .navbar ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar li {
+    margin: 8px 0;
+  }
+
+  .hero {
+    height: auto;
+    padding: 40px 15px;
+    text-align: center;
+  }
+
+  .hero-content {
+    padding: 15px;
+  }
+
+  /*Single-column grids*/
+  .terms-grid,
+  .gallery-grid,
+  .players-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  /*Key concepts list: one column*/
+  .concept-list {
+    columns: 1;
+    padding: 20px;
+    font-size: 1em;
+  }
+
+  .page-img {
+    max-width: 90%;
+  }
+
+  .inline-img {
+    float: none;
+    display: block;
+    margin: 10px auto;
+    width: 80%;
+  }
+
+  table, th, td {
+    font-size: 0.9rem;
+  }
+
+  /*Quiz layout on phones*/
+  .quiz-container {
+    margin: 20px 10px;
+    padding: 20px 15px;
+  }
+
+  .quiz-options {
+    grid-template-columns: 1fr;
+  }
+
+  .quiz-question input[type="text"] {
+    width: 100%;
+  }
 }
